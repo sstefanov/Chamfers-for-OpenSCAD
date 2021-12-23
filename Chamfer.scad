@@ -49,7 +49,11 @@ module chamferCubeImpl(sizeX, sizeY, sizeZ, chamferHeight, chamferX, chamferY, c
     chamferZ = (chamferZ == undef) ? [1, 1, 1, 1] : chamferZ;
     chamferCLength = sqrt(chamferHeight * chamferHeight * 2);
     
-    if (center) translate([-sizeX/2,-sizeY/2,-sizeZ/2])
+    dx = center ? -sizeX/2 : 0;
+    dy = center ? -sizeY/2 : 0;
+    dz = center ? -sizeZ/2 : 0;
+    translate([dx,dy,dz])
+
     difference() {
         cube([sizeX, sizeY, sizeZ]);
         for(x = [0 : 3]) {
